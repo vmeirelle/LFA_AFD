@@ -1,7 +1,7 @@
 # LFA_AFD
-Autômato Finito Determinístico
+Códigos para a disciplina de Linguagens Formais e Automatos, UFRB.
 
-## 🔁 Algoritmo Simulador de AFD 🔁
+## 🔁 Trabalho 01 - Algoritmo Simulador de AFD 🔁
 
 A entrada consiste da especificação de um AFD e de um conjunto de palavras. A saída consiste de uma lista indicando ‘S’ caso o AFD reconheça a palavra em questão e ‘N’ caso contrário.
 
