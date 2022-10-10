@@ -51,18 +51,7 @@ def inicio():
     inicio = input().split(" ")
     finais = input().split(" ")
     palavras = input().split(" ")
-
-# Teste ------------------------------------
-#    estados = ("0 1").split(" ")
-#    alfabeto = ("a b").split(" ")
-#    transicoes = 3
-#    ocd.append(("0 a 1").split(" "))
-#    ocd.append(("1 a 1").split(" "))
-#    ocd.append(("1 b 1").split(" "))
-#    inicio = ("0").split(" ")
-#    finais = ("1").split(" ")
-#    palavras = ("a b aba abb b").split(" ")
-# ------------------------------------------
+    
     resultado = verificarPalavras(palavras, inicio, ocd, finais)
     for k in range (0,len(resultado)):
         saidaConsole(resultado[k])
