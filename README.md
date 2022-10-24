@@ -37,3 +37,52 @@ def verificarPalavras(palavras, inicio, ocdLista,finais):
         verificacao.append(validaFinal(atual, finais))
     return verificacao
 ```
+## 🔁 Trabalho 02 - Algoritmo Simulador de ANFD 🔁
+
+A entrada consiste da especificação de um AFND e de um conjunto de palavras. A saída consiste de uma lista indicando ‘S’ caso o AFD reconheça a palavra em questão e ‘N’ caso contrário.
+
+
+`validaFinal` A função válida final recebe como parâmetro uma listas de estados que a linguagem chegou e a lista de estados finais bpalidos. Nela é então verificado se o estado que se encontra é final. Diferente da anterior, agora o ANFD possui diferentes finais, por isso é tratado como lista. 
+
+```python
+def validaFinal(atuais, finais):
+    for final in finais:
+        for atual in atuais:
+            if(atual == final):
+                return True
+    return False
+```
+    
+`verificarPalavras` A função verificar palavras recebe um conjunto de palavras, o estado de início, o hash de tuplas ocd, e os finais válidos. Então para cada palavra são realizados os possiveis destinos do afnd então validado o estado final dele. Após realizar o mesmo para todas as palavras é retornado uma lista com o estado da verificação de cada palavra.
+
+```python
+def verificarPalavras(palavras, inicial, ocdHash,finalValido):
+    verificacao = []
+    for palavra in palavras:
+        atual = [inicial]
+        for caractere in palavra:
+            destinos = []
+            for i in atual:
+                if(ocdHash[i].get(caractere)):
+                    for j in range(0,len(ocdHash[i][caractere])):
+                        if(ocdHash[i][caractere] not in destinos):
+                            destinos.append(ocdHash[i][caractere][j])
+            atual = destinos
+        verificacao.append(validaFinal(atual, finalValido))
+    return verificacao
+```
+
+`Estrutura de Dados` Para o automâto foi utilizado uma estrutura hash para guardar os possivéis destinos do AFND, otimizando o uso de processamento do código.
+
+```python
+    ocd = {}
+    for estado in estados:
+        ocd[estado] = {}
+    
+    for i in range(0,transicoes):
+        o, c, d = input().split(" ")
+        if c not in ocd[o]:
+            ocd[o][c] = []
+        ocd[o][c].append(d)
+```
+        
