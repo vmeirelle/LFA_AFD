@@ -85,4 +85,76 @@ def verificarPalavras(palavras, inicial, ocdHash,finalValido):
             ocd[o][c] = []
         ocd[o][c].append(d)
 ```
-        
+
+## 🔁 Trabalho 03 - Autômato de Pilha Não-Determinístico (APND) 🔁
+
+#1- Introdução: O quê? Qual a importância?
+
+As transições da máquina são baseadas no estado atual e no símbolo de entrada, e também do símbolo mais alto na pilha. Os símbolos mais inferiores na pilha não estão visíveis e não provocam efeitos imediatos. As ações da máquina incluem colocar símbolo na pilha, retirá-lo da pilha ou substituir o topo da pilha. Um autômato com pilha determinístico tem no máximo uma transição possível para uma mesma combinação de símbolo de entrada, estado e símbolo no topo da pilha. Isto é o que o difere de um autômato com pilha não determinístico.
+
+#2- Projeto e Implementação do Algoritmo.
+
+A entrada consiste da especificação de um APND e de um conjunto de palavras. A saída consiste de uma lista indicando ‘S’ caso o APND reconheça a
+palavra em questão e ‘N’ caso contrário. A palavra vazia (λ) será indicada pelo caractere *.
+
+#3- Metodologia: qual metodologia de software utilizada, como realizou testes, como controlou
+versões.
+
+Programa realizado em Python 3. Por se tratar de um algoritmo significamente pequeno, foram realizados apenas testes com palavras conhecidos. E o versionamento não-se fez nescessário pois não se espera manutenção e implementação futura.
+
+#4- Resultados e Conclusões.
+
+Assim como os algoritmos acima ele recebe entradas de mema maneira. 
+
+`Estrutura de Dados` A pilha foi realizada pela estrutura de pilha do python e o APND em tabela hash.
+
+`verificarPalavras` A função verificar palavras recebe um conjunto de palavras, o estado de início, o hash de apnd, e os finais válidos. Então para cada palavra são realizados os possiveis destinos, mapeando todos os estados finais que são possíveis chegar, e então validando quando encontra um estado final válido nele. Após realizar o mesmo para todas as palavras é retornado uma lista com o estado da verificação de cada palavra.
+```Python
+def verificarPalavras(palavras, ini, apnd, fin):
+    verificacao = []
+    for palavra in palavras:
+        current = [(ini, [], palavra)]
+        check = False
+        while check == False and len(palavra) > 0 and len(current) > 0:
+            _est, _pil, _pal = current.pop()
+
+            if apnd[_est].get('*') and _pal != '*':
+                triplas = apnd[_est].get('*')
+                for desempilha, estadoTo, empilha in triplas:
+                    __pil = _pil.copy()
+                    if desempilha != '*':
+                        if len(__pil) == 0:
+                            break
+                        else:
+                            topo = __pil.pop()
+                            if desempilha != topo:
+                                continue
+                    if empilha != '*':
+                        for element in empilha:
+                            __pil.append(element)
+                    current.append([estadoTo, __pil, _pal])
+            if len(_pal) == 0:
+                if _est in fin and len(_pil) == 0:
+                    check = True
+                else:
+                    continue
+            palavraTemp2 = _pal[1:]
+            if apnd[_est].get(_pal[0]):
+                triplas = apnd[_est].get(_pal[0])
+                for desempilha, estadoTo, empilha in triplas:
+                    pilhaTemporaria = _pil.copy()
+                    if desempilha != '*':
+                        if len(pilhaTemporaria) == 0:
+                            break
+                        else:
+                            topo = pilhaTemporaria.pop()
+                            if desempilha != topo:
+                                continue
+                    if empilha != '*':
+                        for element in empilha:
+                            pilhaTemporaria.append(element)
+                    current.append([estadoTo, pilhaTemporaria, palavraTemp2])
+        verificacao.append(check)
+    return verificacao
+
+```
