@@ -171,3 +171,7 @@ Resultados
         palavras.append(palavra)
 ```
 Para testes com palavras de 0 até tamanho 20.000 foi obtida a seguinte equação, por regressão linear, para resultado de processamento: y = 9.428167954361586e-07x + 3.1401160599411936e-05
+
+O processamento foi eficiente, sem apresentar crescimento significativos para o tamanho da imagem. Lembrando que o tempo está em ms. 
+
+![Gráfico de Regressão](Figure_01.png)
