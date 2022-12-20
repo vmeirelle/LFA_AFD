@@ -1,4 +1,4 @@
-# LFA_AFD
+# Automatos
 Códigos para a disciplina de Linguagens Formais e Automatos, UFRB.
 
 ## 🔁 Trabalho 01 - Algoritmo Simulador de AFD 🔁
