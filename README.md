@@ -171,7 +171,30 @@ Resultados
         palavras.append(palavra)
 ```
 Para testes com palavras de 0 até tamanho 20.000 foi obtida a seguinte equação, por regressão linear, para resultado de processamento: y = 9.428167954361586e-07x + 3.1401160599411936e-05
+O código foi rodado várias vezes de acordo o seguinte segmento: 
 
+```Python
+tempos = []
+for i in range(0,2000):
+    
+        timeIni = time.time()*10000
+        (inicio(1,i)) #roda o codigo
+        timeFin = time.time()*10000
+        timef = timeFin - timeIni
+        t1.append(timef/10000)
+
+
+lr = LinearRegression()
+x = np.array(list(zip(range(1,2001))))
+y = np.array(tempos)
+lr.fit(x,y)
+plt.xlabel('n')
+plt.ylabel('tempo')
+plt.scatter(x, tempos)
+plt.plot(x, lr.predict(x), color='red')
+plt.show()
+```
 O processamento foi eficiente, sem apresentar crescimento significativos para o tamanho da imagem. Lembrando que o tempo está em ms. 
 
-![Gráfico de Regressão](Figure_01.png)
+![Gráfico de Regressão](Figure_1.png)
+
