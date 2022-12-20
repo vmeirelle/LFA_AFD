@@ -100,15 +100,13 @@ palavra em questão e ‘N’ caso contrário. A palavra vazia (λ) será indica
 #3- Metodologia: qual metodologia de software utilizada, como realizou testes, como controlou
 versões.
 
-Programa realizado em Python 3. Por se tratar de um algoritmo significamente pequeno, foram realizados apenas testes com palavras conhecidos. E o versionamento não-se fez nescessário pois não se espera manutenção e implementação futura.
-
-#4- Resultados e Conclusões.
-
-Assim como os algoritmos acima ele recebe entradas de mema maneira. 
+Programa realizado em Python 3. Por se tratar de um algoritmo significamente pequeno, foram realizados apenas testes com palavras conhecidas e um teste com palavras aleatórias de 0 até um tamanho N. E o versionamento não-se fez nescessário pois não se espera manutenção e implementação futura.
 
 `Estrutura de Dados` A pilha foi realizada pela estrutura de pilha do python e o APND em tabela hash.
+#4- Resultados e Conclusões.
 
 `verificarPalavras` A função verificar palavras recebe um conjunto de palavras, o estado de início, o hash de apnd, e os finais válidos. Então para cada palavra são realizados os possiveis destinos, mapeando todos os estados finais que são possíveis chegar, e então validando quando encontra um estado final válido nele. Após realizar o mesmo para todas as palavras é retornado uma lista com o estado da verificação de cada palavra.
+
 ```Python
 def verificarPalavras(palavras, ini, apnd, fin):
     verificacao = []
@@ -158,3 +156,18 @@ def verificarPalavras(palavras, ini, apnd, fin):
     return verificacao
 
 ```
+
+Resultados 
+
+`Tempo de Verificação` Foi possível verificar com exito se a palavra era ou não pertencente ao APND. Para comparação de tempo de resposta foi utilizado a seguinte estrutura para realizar diversas execuções do programa com diversas palavras em tamanho crescente. E então com marcações de tempo no código foi verificado o quanto aumenta o tempo de execução com o aumento da palavra.
+
+```Python
+    #Algoritmo geração de palavras, sendo tam o tamanho dela e qua a quantidade.
+        palavras = []
+    for _quan in range (0,qua):
+        palavra = ""
+        for _tam in range (0,tam):
+            palavra = palavra + alfabeto[(random.randint(0,1))]
+        palavras.append(palavra)
+```
+Para testes com palavras de 0 até tamanho 20.000 foi obtida a seguinte equação, por regressão linear, para resultado de processamento: y = 9.428167954361586e-07x + 3.1401160599411936e-05
