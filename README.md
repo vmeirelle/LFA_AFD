@@ -174,23 +174,25 @@ Para testes com palavras de 0 até tamanho 20.000 foi obtida a seguinte equaçã
 O código foi rodado várias vezes de acordo o seguinte segmento: 
 
 ```Python
+#Multipla instancia do codigo
 tempos = []
 for i in range(0,2000):
     
         timeIni = time.time()*10000
-        (inicio(1,i)) #roda o codigo
+        (inicio(i)) #roda o codigo
         timeFin = time.time()*10000
         timef = timeFin - timeIni
         t1.append(timef/10000)
 
+#Impressao do codigo com regressão linear
 
-lr = LinearRegression()
-x = np.array(list(zip(range(1,2001))))
-y = np.array(tempos)
-lr.fit(x,y)
 plt.xlabel('n')
 plt.ylabel('tempo')
+x = np.array(list(zip(range(1,2001))))
+y = np.array(tempos)
 plt.scatter(x, tempos)
+lr = LinearRegression()
+lr.fit(x,y)
 plt.plot(x, lr.predict(x), color='red')
 plt.show()
 ```
