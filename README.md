@@ -170,7 +170,7 @@ Resultados
             palavra = palavra + alfabeto[(random.randint(0,1))]
         palavras.append(palavra)
 ```
-Para testes com palavras de 0 até tamanho 20.000 foi obtida a seguinte equação, por regressão linear, para resultado de processamento: y = 9.428167954361586e-07x + 3.1401160599411936e-05
+Para testes com palavras de 0 até tamanho 2.000 foi obtida a seguinte equação, por regressão linear, para resultado de processamento: y = 9.428167954361586e-07x + 3.1401160599411936e-05
 O código foi rodado várias vezes de acordo o seguinte segmento: 
 
 ```Python
